@@ -40,9 +40,9 @@ if spaceState = D
 	send, ^{Up}			;space-caps-k => ctrl-up : scroll file up
 else
 	if shiftState = D
-		send, +{Up}		;shift-caps-k => shift-up : highlights from cursor to next line
+		send, +{Up}		;shift-caps-k => shift-up : highlights from cursor up to next line
 	else
-		send, {Up}		;caps-k => up : up
+		send, {Up}		;caps-k => up : moves cursor up
 return
 
 ;Map to down arrow actions
@@ -50,12 +50,12 @@ capslock & j::
 GetKeyState, shiftState, shift, P
 GetKeyState, spaceState, space, P
 if spaceState = D 
-	send, ^{Down}
+	send, ^{Down}		;space-caps-j => ctrl-down : scroll file down
 else
 	if shiftState = D
-		send, +{Down}
+		send, +{Down}	;shift-caps-j => shift=down : highlights from cursor down to next line
 	else
-		send, {Down}
+		send, {Down}	;caps-j => down : moves cursor down
 return
 
 ;Map to right arrow or ctrl right arrow
@@ -64,14 +64,14 @@ GetKeyState, shiftState, shift, P
 GetKeyState, spaceState, space, P
 if spaceState = D 
 	if shiftState = D
-		send, +^{right}  ;select to right by word
+		send, +^{right} ;shift-space-caps-l => shift-ctrl-right : select to right by word
 	else
-		send, ^{right} ;move to right by word
+		send, ^{right}	;space-caps-l => ctrl-right : move to right by word
 else
 	if shiftState = D
-		send, +{right}  ;selct to right by char
+		send, +{right}  ;shift-caps-l => shift-right : selct to right by char
 	else
-		send, {right}  ;move to right by char
+		send, {right}  ;caps-l => right : move to right by char
 return
 
 ;Map to left arrow or ctrl left arrow
@@ -80,38 +80,36 @@ GetKeyState, shiftState, shift, P
 GetKeyState, spaceState, space, P
 if spaceState = D 
 	if shiftState = D
-		send, +^{left}
+		send, +^{left}	;shift-space-caps-h => shift-ctrl-left : select to left by word
 	else
-		send, ^{left}
+		send, ^{left}	;space-caps-h => ctrl-left : move to left by word
 else
 	if shiftState = D
-		send, +{left}
+		send, +{left}	;shift-caps-h => shift-left : select to left by char
 	else
-		send, {left}
+		send, {left}	;caps-h => left : move to left by char
 return
 
 
-;Map to escape or shfit + escape
-capslock & e:: 
-GetKeyState, state, shift, P
-if state = D 
-send, {shift}+{escape}
-else
-send, {escape}
-return
+capslock & x:: send, {delete}	;caps-x => delete 
 
-;Map to delete
-capslock & x::send, {delete} 
 
-;Map capslock to close window
 capslock & c::
 GetKeyState, state, space, P
 if state = D 
-send !{F4}
+	send !{F4}	;shift-caps-c => alt-F4 : close window
 else
-send, ^{F4}
+	send, ^{F4}	;caps-c => ctrl-F4 : close tab
 return
 
+
+capslock & t:: 
+GetKeyState, state, space, P
+if state = D 
+	send ShiftAltTab	;shift-caps-t => shift-alt-tab
+else
+	send AltTab 		;caps-t => alt-tab
+return
 
 
 
