@@ -9,6 +9,8 @@
 ;##  resharper shortcuts  ##
 ;###########################
 
+capslock & r:: send, ^+r 	;caps-r => ctrl-shift-r : opens 'Refactor This' menu
+
 capslock & d:: send, !``d 	;caps-d => alt-`-d : go to 'Declaration' on Resharper's "Navigate to" menu
 
 
